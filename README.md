@@ -1,11 +1,11 @@
-About pcsclite
-==============
+About pcsclite-feedstock
+========================
+
+Feedstock license: [BSD-3-Clause](https://github.com/conda-forge/pcsclite-feedstock/blob/main/LICENSE.txt)
 
 Home: https://pcsclite.apdu.fr/
 
 Package license: BSD-3-Clause and GPL-3.0-or-later and BSD-2-Clause and MIT
-
-Feedstock license: [BSD-3-Clause](https://github.com/conda-forge/pcsclite-feedstock/blob/main/LICENSE.txt)
 
 Summary: Middleware to access a smart card using SCard API (PC/SC).
 
