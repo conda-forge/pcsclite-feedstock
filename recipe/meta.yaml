@@ -1,5 +1,5 @@
 {% set name = "pcsclite" %}
-{% set version = "2.0.0" %}
+{% set version = "2.1.0" %}
 
 package:
   name: {{ name|lower }}
@@ -7,7 +7,7 @@ package:
 
 source:
   url: https://pcsclite.apdu.fr/files/pcsc-lite-{{ version }}.tar.bz2
-  sha256: d6c3e2b64510e5ed6fcd3323febf2cc2a8e5fda5a6588c7671f2d77f9f189356
+  sha256: 85cab61cc744c81e2bc432656863293b8428d0136f079e3b12a84b335b5b35aa
 
 build:
   skip: true  # [not linux]
