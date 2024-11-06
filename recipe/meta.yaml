@@ -1,5 +1,5 @@
 {% set name = "pcsclite" %}
-{% set version = "2.0.0" %}
+{% set version = "2.0.1" %}
 
 package:
   name: {{ name|lower }}
@@ -7,7 +7,7 @@ package:
 
 source:
   url: https://pcsclite.apdu.fr/files/pcsc-lite-{{ version }}.tar.bz2
-  sha256: d6c3e2b64510e5ed6fcd3323febf2cc2a8e5fda5a6588c7671f2d77f9f189356
+  sha256: 5edcaf5d4544403bdab6ee2b5d6c02c6f97ea64eebf0825b8d0fa61ba417dada
 
 build:
   skip: true  # [not linux]
@@ -17,7 +17,7 @@ build:
     - if test -f Makefile; then make distclean; fi
     - rm -rf *.cache *.m4 config.guess config.log config.status config.sub depcomp ltmain.sh
     - autoreconf --verbose --install --force
-    - ./configure --prefix=$PREFIX --sbindir=$PREFIX/bin
+    - ./configure --prefix=$PREFIX --sbindir=$PREFIX/bin --disable-polkit
     - make install
     - make distcheck
     - rm $PREFIX/bin/pcsc-spy
