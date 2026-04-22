@@ -22,23 +22,23 @@ build:
     - make distcheck
     - rm $PREFIX/bin/pcsc-spy
     - rm $PREFIX/lib/libpcscspy.so*
-  number: 0
+  number: 1
   run_exports:
     - {{ pin_subpackage('pcsclite', max_pin='x.x') }}
 
 requirements:
   build:
+    - {{ stdlib("c") }}
     - {{ compiler('c') }}
-    - {{ cdt('systemd-devel') }}
     - autoconf-archive
     - automake
     - flex
     - libtool
     - make
     - pkg-config
-    - sysroot_linux-64 2.17  # [linux64]
   host:
     - libudev
+    - libsystemd
   run:
 
 test:
