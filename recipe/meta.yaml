@@ -1,13 +1,12 @@
-{% set name = "pcsclite" %}
-{% set version = "2.0.0" %}
+{% set version = "2.1.0" %}
 
 package:
-  name: {{ name|lower }}
+  name: pcsclite
   version: {{ version }}
 
 source:
-  url: https://pcsclite.apdu.fr/files/pcsc-lite-{{ version }}.tar.bz2
-  sha256: d6c3e2b64510e5ed6fcd3323febf2cc2a8e5fda5a6588c7671f2d77f9f189356
+  url: https://salsa.debian.org/rousseau/PCSC/-/archive/{{ version }}/PCSC-{{ version }}.tar.gz
+  sha256: 801f2f53feb51df03e9c2785a37ed10557048809cc15503a9be8ef01cc60bdd2
 
 build:
   skip: true  # [not linux]
@@ -17,9 +16,8 @@ build:
     - if test -f Makefile; then make distclean; fi
     - rm -rf *.cache *.m4 config.guess config.log config.status config.sub depcomp ltmain.sh
     - autoreconf --verbose --install --force
-    - ./configure --prefix=$PREFIX --sbindir=$PREFIX/bin
+    - ./configure --prefix=$PREFIX --sbindir=$PREFIX/bin --disable-polkit
     - make install
-    - make distcheck
     - rm $PREFIX/bin/pcsc-spy
     - rm $PREFIX/lib/libpcscspy.so*
   number: 0
@@ -28,6 +26,7 @@ build:
 
 requirements:
   build:
+    - {{ stdlib('c') }}
     - {{ compiler('c') }}
     - {{ cdt('systemd-devel') }}
     - autoconf-archive
@@ -36,7 +35,6 @@ requirements:
     - libtool
     - make
     - pkg-config
-    - sysroot_linux-64 2.17  # [linux64]
   host:
     - libudev
   run:
